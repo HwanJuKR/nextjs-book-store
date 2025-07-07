@@ -1,4 +1,4 @@
-import SearchInput from "@/components/searchInput";
+import SearchInput from "@/components/SearchInput";
 import "./globals.css";
 import Link from "next/link";
 
