@@ -1,5 +1,7 @@
-import bookData from "@/mock/book.json";
-import BookItem from "@/components/bookItem";
+import BookItem from "@/components/BookItem";
+import ErrorMessage from "@/components/ErrorMessage";
+import { BookData } from "@/interfaces/bookStore.interface";
+import { getBook } from "@/lib/api";
 
 export default async function SearchPage({
   searchParams,
@@ -7,10 +9,20 @@ export default async function SearchPage({
   searchParams: Promise<{ q?: string }>;
 }) {
   const { q } = await searchParams;
+  const result = await getBook();
 
+  if (!result.success) {
+    return (
+      <div className="max-w-7xl mx-auto">
+        <ErrorMessage message={"검색 결과 목록을 가져오는 데 실패했습니다."} />
+      </div>
+    );
+  }
+
+  const bookData = result.data;
   const filterBook = q
     ? bookData.filter(
-        (book) =>
+        (book: BookData) =>
           book.title.toLowerCase().includes(q.toLowerCase()) ||
           book.author.toLowerCase().includes(q.toLowerCase())
       )
@@ -21,7 +33,7 @@ export default async function SearchPage({
       {filterBook.length > 0 ? (
         <div className="max-w-7xl mx-auto">
           <div className="grid gap-8">
-            {filterBook.map((book) => (
+            {filterBook.map((book: BookData) => (
               <BookItem key={book.id} {...book} />
             ))}
           </div>

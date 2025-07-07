@@ -7,3 +7,7 @@ export interface BookData {
   description: string;
   coverImgUrl: string;
 }
+
+export interface ErrorMessageProps {
+  message: string;
+}

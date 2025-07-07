@@ -1,6 +1,5 @@
 import Image from "next/image";
-import bookData from "@/mock/book.json";
-import { notFound } from "next/navigation";
+import { getBookById } from "@/lib/api";
 
 export default async function BookDetailPage({
   params,
@@ -8,14 +7,8 @@ export default async function BookDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const bookId = parseInt(id);
-  const book = bookData.find((book) => book.id === bookId);
-
-  if (!book) {
-    notFound();
-  }
-
-  const { title, subTitle, description, author, publisher, coverImgUrl } = book;
+  const result = await getBookById(id);
+  const { title, subTitle, description, author, publisher, coverImgUrl } = result.data;
 
   return (
     <>
@@ -27,7 +20,13 @@ export default async function BookDetailPage({
       >
         <div className="flex gap-10 items-center max-w-5xl w-full mx-auto px-4 text-white">
           <div className="w-56 h-[285px] flex-shrink-0">
-            <Image src={coverImgUrl} className="object-cover shadow-xl" alt="" width={224} height={285} />
+            <Image
+              src={coverImgUrl}
+              className="object-cover shadow-xl"
+              alt=""
+              width={224}
+              height={285}
+            />
           </div>
           <div className="flex-1">
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium">
