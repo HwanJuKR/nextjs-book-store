@@ -21,9 +21,10 @@ export default async function Main() {
   });
 
   // 모든 도서 SSR prefetch
-  await queryClient.prefetchQuery({
-    queryKey: ["allBook"],
-    queryFn: () => bookApi.getAllBook(),
+  await queryClient.prefetchInfiniteQuery({
+    queryKey: ["infiniteBookList"],
+    queryFn: () => bookApi.getBookByPage({ page: 1, pageSize: 10 }),
+    initialPageParam: 1,
   });
 
   return (
