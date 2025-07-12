@@ -14,13 +14,13 @@ export default function BookItem({
   return (
     <Link href={`/book/${id}`} className="group block">
       <div className="flex gap-6 p-8 bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:border-blue-200">
-        <div className="w-32 h-[157px] flex-shrink-0">
+        <div className="relative w-32 h-[157px] flex-shrink-0">
           <Image
             src={coverImgUrl}
             className="object-cover shadow-lg"
-            alt=""
-            width={128}
-            height={157}
+            alt={`${title} 책 표지`}
+            fill
+            sizes="128px"
           />
         </div>
         <div className="flex-1">

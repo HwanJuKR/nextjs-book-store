@@ -1,21 +1,12 @@
-import BookItem from "@/components/BookItem";
-import ErrorMessage from "@/components/ErrorMessage";
+"use client";
+
+import BookItem from "@/components/book/BookItem";
+import { useBook } from "@/hooks/useBook";
 import { BookData } from "@/interfaces/bookStore.interface";
-import { getBook } from "@/lib/api";
 
-export default async function AllBook() {
-  const result = await getBook();
-
-  if (!result.success) {
-    return (
-      <section className="max-w-7xl mx-auto">
-        <ErrorMessage message={"전체 도서 목록을 가져오는 데 실패했습니다."} />
-      </section>
-    );
-  }
-
-  const book = result.data;
-
+export default function AllBook() {
+  const { data: bookList } = useBook();
+ 
   return (
     <section className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between gap-4 mb-10">
@@ -31,7 +22,7 @@ export default async function AllBook() {
         </div>
       </div>
       <div className="grid gap-8">
-        {book.map((book: BookData) => (
+        {bookList.map((book: BookData) => (
           <BookItem key={book.id} {...book} />
         ))}
       </div>

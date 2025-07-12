@@ -1,20 +1,39 @@
-import AllBook from "@/components/AllBook";
-import RecommendBook from "@/components/RecommendBook";
-import { BookListSkeleton } from "@/components/SkeletonUI";
-import { Suspense } from "react";
+import AllBook from "@/components/book/AllBook";
+import RecommendBook from "@/components/book/RecommendBook";
+import { bookApi } from "@/lib/bookApi";
+import { queryClient } from "@/lib/queryClient";
+import {
+  dehydrate,
+  HydrationBoundary,
+} from "@tanstack/react-query";
 
-export default function Main() {
+export const metadata = {
+  title: 'BOOK STORE',
+  description: '개발자들이 사랑하는 필수 도서들을 확인하세요',
+  keywords: '개발, 프로그래밍, 도서',
+};
+
+export default async function Main() {
+  // 추천 도서 SSR prefetch
+  await queryClient.prefetchQuery({
+    queryKey: ["recommendBook"],
+    queryFn: () => bookApi.getRecommendBook(),
+  });
+
+  // 모든 도서 SSR prefetch
+  await queryClient.prefetchQuery({
+    queryKey: ["allBook"],
+    queryFn: () => bookApi.getAllBook(),
+  });
+
   return (
     <>
-      {/* 지금 추천하는 도서 */}
-      <Suspense fallback={<BookListSkeleton />}>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        {/* 지금 추천하는 도서 */}
         <RecommendBook />
-      </Suspense>
-
-      {/* 모든 도서 */}
-      <Suspense fallback={<BookListSkeleton />}>
+        {/* 모든 도서 */}
         <AllBook />
-      </Suspense>
+      </HydrationBoundary>
     </>
   );
 }
