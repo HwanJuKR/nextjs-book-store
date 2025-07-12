@@ -6,8 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [search, setSearch] = useState("");
   const q = searchParams.get("q");
+  const [search, setSearch] = useState(q || "");
 
   useEffect(() => {
     setSearch(q || "");
@@ -18,9 +18,8 @@ export default function SearchInput() {
   };
 
   const onSubmit = () => {
-    if (!search || q === search) return;
-
-    router.push(`/search?q=${search}`);
+    if (!search.trim()) return;
+    router.push(`/search?q=${search.trim()}`);
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

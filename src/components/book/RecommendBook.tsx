@@ -1,20 +1,11 @@
-import BookItem from "@/components/BookItem";
+"use client";
+
+import BookItem from "@/components/book/BookItem";
+import { useRecommendBook } from "@/hooks/useBook";
 import { BookData } from "@/interfaces/bookStore.interface";
-import { getBook } from "@/lib/api";
-import ErrorMessage from "@/components/ErrorMessage";
 
-export default async function RecommendBook() {
-  const result = await getBook();
-
-  if (!result.success) {
-    return (
-      <section className="max-w-7xl mx-auto mb-24">
-        <ErrorMessage message={"추천 도서 목록을 가져오는 데 실패했습니다."} />
-      </section>
-    );
-  }
-
-  const book = result.data;
+export default function RecommendBook() {
+  const { data: bookList } = useRecommendBook();
 
   return (
     <section className="max-w-7xl mx-auto mb-24">
@@ -34,7 +25,7 @@ export default async function RecommendBook() {
       </div>
       <div className="max-w-7xl mx-auto">
         <div className="grid gap-8">
-          {book.map((book: BookData) => (
+          {bookList.map((book: BookData) => (
             <BookItem key={book.id} {...book} />
           ))}
         </div>

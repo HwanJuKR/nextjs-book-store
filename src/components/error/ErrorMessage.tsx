@@ -1,12 +1,6 @@
-"use client";
-
 import { ErrorMessageProps } from "@/interfaces/bookStore.interface";
 
-export default function ErrorMessage({ message }: ErrorMessageProps) {
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-
+export default function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
   return (
     <div className={`bg-red-50 border border-red-200 rounded-lg p-6`}>
       <div className="flex items-center justify-between gap-4">
@@ -28,7 +22,7 @@ export default function ErrorMessage({ message }: ErrorMessageProps) {
           <div className="text-sm text-red-700">{message}</div>
         </div>
         <button
-          onClick={handleRefresh}
+          onClick={onRetry}
           className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors flex-shrink-0 cursor-pointer"
         >
           <svg

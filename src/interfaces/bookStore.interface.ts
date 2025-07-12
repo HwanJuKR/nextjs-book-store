@@ -1,5 +1,5 @@
 export interface BookData {
-  id: number;
+  id: string;
   title: string;
   subTitle: string;
   author: string;
@@ -10,4 +10,5 @@ export interface BookData {
 
 export interface ErrorMessageProps {
   message: string;
+  onRetry: () => void;
 }
