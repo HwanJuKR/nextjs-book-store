@@ -1,11 +1,16 @@
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { bookApi } from "@/lib/bookApi";
+import { useInfiniteQuery, useSuspenseQuery } from "@tanstack/react-query";
 
 // 모든 도서 목록 가져오기
-export function useBook() {
-  return useSuspenseQuery({
-    queryKey: ["allBook"],
-    queryFn: () => bookApi.getAllBook(),
+export function useInfiniteList() {
+  return useInfiniteQuery({
+    queryKey: ["infiniteBookList"],
+    queryFn: ({ pageParam = 1 }) =>
+      bookApi.getBookByPage({ page: pageParam, pageSize: 10 }),
+    getNextPageParam: (lastPage, allPage) => {
+      return lastPage.hasNextPage ? allPage.length + 1 : undefined;
+    },
+    initialPageParam: 1,
     retry: 3,
   });
 }

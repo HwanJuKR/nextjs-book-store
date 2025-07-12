@@ -1,12 +1,45 @@
 "use client";
 
 import BookItem from "@/components/book/BookItem";
-import { useBook } from "@/hooks/useBook";
+import { BookItemSkeleton } from "@/components/skeleton/SkeletonUi";
+import { useInfiniteList } from "@/hooks/useBook";
 import { BookData } from "@/interfaces/bookStore.interface";
+import { useEffect, useRef } from "react";
 
 export default function AllBook() {
-  const { data: bookList } = useBook();
- 
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteList();
+  const bookList = data?.pages.flatMap((page) => page.book) || [];
+  const moreRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const target = entries[0];
+        if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
+        }
+      },
+      {
+        root: null,
+        rootMargin: "100px",
+        threshold: 0.1,
+      }
+    );
+
+    const currentRef = moreRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
   return (
     <section className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between gap-4 mb-10">
@@ -25,6 +58,10 @@ export default function AllBook() {
         {bookList.map((book: BookData) => (
           <BookItem key={book.id} {...book} />
         ))}
+      </div>
+
+      <div ref={moreRef} className="w-full py-8">
+        {isFetchingNextPage && <BookItemSkeleton />}
       </div>
     </section>
   );

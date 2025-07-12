@@ -12,3 +12,14 @@ export interface ErrorMessageProps {
   message: string;
   onRetry: () => void;
 }
+
+export interface BookByPageParams {
+  page: number;
+  pageSize?: number;
+};
+
+export interface BookByPage {
+  book: BookData[];
+  hasNextPage: boolean;
+  totalCount: number;
+}
