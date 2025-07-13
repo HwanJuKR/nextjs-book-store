@@ -13,7 +13,7 @@ export default function SearchResult({ q }: { q: string }) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto" data-testid="searchResult">
       <div className="grid gap-8">
         {bookList.map((book: BookData) => (
           <BookItem key={book.id} {...book} />

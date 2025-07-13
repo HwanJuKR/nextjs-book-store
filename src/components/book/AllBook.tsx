@@ -46,7 +46,7 @@ export default function AllBook() {
         <div className="flex items-center gap-4">
           <div className="w-2 h-10 bg-gradient-to-b from-gray-500 to-gray-600 rounded-full"></div>
           <div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">모든 도서</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-1" data-testid="allBook">모든 도서</h2>
             <p className="text-gray-600">전체 도서 목록을 확인하세요</p>
           </div>
         </div>

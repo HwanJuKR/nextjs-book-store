@@ -12,7 +12,7 @@ export default function BookItem({
   coverImgUrl,
 }: BookData) {
   return (
-    <Link href={`/book/${id}`} className="group block">
+    <Link href={`/book/${id}`} className="group block" data-testid="bookItem">
       <div className="flex gap-6 p-8 bg-white rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:border-blue-200">
         <div className="relative w-32 h-[157px] flex-shrink-0">
           <Image
@@ -24,7 +24,10 @@ export default function BookItem({
           />
         </div>
         <div className="flex-1">
-          <div className="mb-2 text-xl font-bold text-gray-900 line-clamp-2">
+          <div
+            className="mb-2 text-xl font-bold text-gray-900 line-clamp-2"
+            data-testid="bookTitle"
+          >
             {title}
           </div>
           <div className="flex items-center gap-2 mb-3">

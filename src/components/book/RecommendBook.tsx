@@ -8,14 +8,14 @@ export default function RecommendBook() {
   const { data: bookList } = useRecommendBook();
 
   return (
-    <section className="max-w-7xl mx-auto mb-24">
+    <section className="max-w-7xl mx-auto mb-24" data-testid="recommendBook">
       <div className="flex items-center justify-between gap-4 mb-10">
         <div className="flex items-center gap-4">
           <div className="w-2 h-10 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full"></div>
           <div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">
+            <h2 className="text-3xl font-bold text-gray-900 mb-1">
               지금 추천하는 도서
-            </p>
+            </h2>
             <p className="text-gray-600">개발자들이 사랑하는 필수 도서들</p>
           </div>
         </div>

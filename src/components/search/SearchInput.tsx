@@ -36,6 +36,7 @@ export default function SearchInput() {
         onKeyDown={onKeyDown}
         className="w-full min-w-0 px-3 py-2 text-sm bg-transparent border-none outline-none placeholder-gray-500 text-gray-900"
         placeholder="도서 또는 저자 검색"
+        data-testid="searchInput"
       />
       <button
         onClick={onSubmit}
