@@ -38,7 +38,7 @@ await new Promise((resolve) => setTimeout(resolve, 1000));
 ### 1. 프로젝트 클론
 
 ```bash
-git clone https://github.com/your-repo/nextjs-book-store.git
+git clone https://github.com/HwanJuKR/nextjs-book-store.git
 cd nextjs-book-store
 ```
 
@@ -160,7 +160,7 @@ nextjs-book-store/
 프로젝트는 Cypress를 통한 E2E 테스트를 포함하고 있습니다:
 
 - **메인 페이지 테스트**: 추천 도서 및 전체 도서 목록 렌더링 확인
-- **검색 기능 테스트**: 도서 검색 및 결과 표시 확인
+- **검색 페이지 테스트**: 도서 검색 및 결과 표시 확인
 - **도서 상세 페이지 테스트**: 개별 도서 정보 페이지 확인
 
 ---
