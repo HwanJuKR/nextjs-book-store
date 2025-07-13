@@ -16,7 +16,7 @@ export default function NoResult({ q }: { q: string }) {
           />
         </svg>
       </div>
-      <div className="text-2xl font-bold text-gray-900 mb-4">
+      <div className="text-2xl font-bold text-gray-900 mb-4" data-testid="noResult">
         검색 결과가 없습니다
       </div>
       <div className="text-gray-600 mb-6">

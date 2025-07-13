@@ -16,7 +16,7 @@ export interface ErrorMessageProps {
 export interface BookByPageParams {
   page: number;
   pageSize?: number;
-};
+}
 
 export interface BookByPage {
   book: BookData[];

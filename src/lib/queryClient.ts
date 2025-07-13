@@ -15,5 +15,3 @@ const queryClientConfig = {
 export function createQueryClient() {
   return new QueryClient(queryClientConfig);
 }
-
-export const queryClient = createQueryClient();

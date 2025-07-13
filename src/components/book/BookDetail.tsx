@@ -20,9 +20,10 @@ export default function BookDetail({ id }: { id: string }) {
         style={{
           backgroundImage: `linear-gradient(rgba(30,58,138,0.85), rgba(30,58,138,0.9)), url('${coverImgUrl}')`,
         }}
+        data-testid="bookDetail"
       >
         <div className="flex gap-10 items-center max-w-5xl w-full mx-auto px-4 text-white">
-          <div className="w-56 h-[285px] flex-shrink-0 relative">
+          <div className="w-56 h-[285px] flex-shrink-0 relative" data-testid="bookImage">
             <Image
               src={coverImgUrl}
               className="object-cover shadow-xl"
@@ -38,16 +39,16 @@ export default function BookDetail({ id }: { id: string }) {
               </svg>
               추천 도서
             </div>
-            <div className="mb-4 text-5xl font-bold">{title}</div>
-            <p className="mb-6 text-2xl text-blue-100">{subTitle}</p>
+            <div className="mb-4 text-5xl font-bold" data-testid="bookTitle">{title}</div>
+            <p className="mb-6 text-2xl text-blue-100" data-testid="bookSubTitle">{subTitle}</p>
 
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full">
                 <span className="text-lg font-bold">{author.charAt(0)}</span>
               </div>
               <div>
-                <p className="text-lg font-semibold">{author}</p>
-                <p className="flex items-center text-blue-200">{publisher}</p>
+                <p className="text-lg font-semibold" data-testid="bookAuthor">{author}</p>
+                <p className="flex items-center text-blue-200" data-testid="bookPublisher">{publisher}</p>
               </div>
             </div>
           </div>
@@ -59,7 +60,7 @@ export default function BookDetail({ id }: { id: string }) {
             <div className="w-2 h-10 bg-gradient-to-b from-blue-500 to-blue-600 rounded-full"></div>
             <div className="text-3xl font-bold text-gray-900">책 소개</div>
           </div>
-          <div className="mb-12 text-gray-700 whitespace-pre-line text-lg">
+          <div className="mb-12 text-gray-700 whitespace-pre-line text-lg" data-testid="bookDescription">
             {description}
           </div>
           <div className="flex items-center justify-end pt-8 border-t border-gray-200">

@@ -3,7 +3,7 @@ const skeletonBaseClass = "shimmer rounded";
 
 export function BookListSkeleton({ count = 3 }: { count?: number } = {}) {
   return (
-    <section className="max-w-7xl mx-auto mb-24">
+    <section className="max-w-7xl mx-auto mb-24" data-testid="bookListSkeleton">
       <div className="flex items-center justify-between mb-10">
         <div className="flex items-center gap-4">
           <div className={`w-2 h-10 rounded-full ${skeletonBaseClass}`}></div>
@@ -67,7 +67,7 @@ export function BookItemSkeleton() {
 export function BookDetailSkeleton() {
   return (
     <>
-      <div className="flex items-center h-[500px] -mx-4 -mt-16 mb-16 bg-gradient-to-br from-gray-300 to-gray-400">
+      <div className="flex items-center h-[500px] -mx-4 -mt-16 mb-16 bg-gradient-to-br from-gray-300 to-gray-400" data-testid="BookDetailSkeleton">
         <div className="flex gap-10 items-center max-w-5xl w-full mx-auto px-4">
           <div className="w-56 h-[285px] flex-shrink-0">
             <div

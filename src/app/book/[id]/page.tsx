@@ -1,10 +1,7 @@
-import { bookApi } from "@/lib/bookApi";
-import { queryClient } from "@/lib/queryClient";
-import {
-  dehydrate,
-  HydrationBoundary,
-} from "@tanstack/react-query";
 import BookDetail from "@/components/book/BookDetail";
+import { bookApi } from "@/lib/bookApi";
+import { createQueryClient } from "@/lib/queryClient";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 export default async function BookDetailPage({
   params,
@@ -12,6 +9,7 @@ export default async function BookDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const queryClient = createQueryClient();
 
   // 도서 상세 정보 SSR prefetch
   await queryClient.prefetchQuery({

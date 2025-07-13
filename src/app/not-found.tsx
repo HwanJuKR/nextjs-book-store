@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="p-16 max-w-lg mx-auto text-center bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100">
+    <div className="p-16 max-w-lg mx-auto text-center bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl border border-gray-100" data-testid="notFound">
       <div className="flex items-center justify-center w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full">
         <svg
           className="w-10 h-10 text-blue-500"
@@ -25,6 +25,7 @@ export default function NotFound() {
       <Link
         href="/"
         className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 text-white font-medium rounded-xl shadow-lg"
+        data-testid="buttonMain"
       >
         <svg
           className="w-4 h-4"
@@ -39,7 +40,7 @@ export default function NotFound() {
             d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
           />
         </svg>
-        홈으로 돌아가기
+        메인으로 돌아가기
       </Link>
     </div>
   );

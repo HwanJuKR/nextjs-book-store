@@ -1,10 +1,7 @@
 import SearchResult from "@/components/search/SearchResult";
 import { bookApi } from "@/lib/bookApi";
-import { queryClient } from "@/lib/queryClient";
-import {
-  dehydrate,
-  HydrationBoundary,
-} from "@tanstack/react-query";
+import { createQueryClient } from "@/lib/queryClient";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 export default async function SearchPage({
   searchParams,
@@ -13,6 +10,7 @@ export default async function SearchPage({
 }) {
   const { q } = await searchParams;
   const query = q || "";
+  const queryClient = createQueryClient();
 
   // 도서 검색 SSR prefetch
   await queryClient.prefetchQuery({
